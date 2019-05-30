@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Inserting Relationships | Vuex ORM</title>
+    <meta name="description" content="The Vuex plugin to enable Object-Relational Mapping access to the Vuex Store.">
+    
+    
+    <link rel="preload" href="/vuex-orm/assets/css/0.styles.dae4e529.css" as="style"><link rel="preload" href="/vuex-orm/assets/js/app.6db28ecc.js" as="script"><link rel="preload" href="/vuex-orm/assets/js/2.b42d885f.js" as="script"><link rel="preload" href="/vuex-orm/assets/js/22.997f30bc.js" as="script"><link rel="prefetch" href="/vuex-orm/assets/js/10.427b5722.js"><link rel="prefetch" href="/vuex-orm/assets/js/11.cb9a85ae.js"><link rel="prefetch" href="/vuex-orm/assets/js/12.ee64ca3b.js"><link rel="prefetch" href="/vuex-orm/assets/js/13.aea5ff80.js"><link rel="prefetch" href="/vuex-orm/assets/js/14.b84c66ed.js"><link rel="prefetch" href="/vuex-orm/assets/js/15.726db050.js"><link rel="prefetch" href="/vuex-orm/assets/js/16.453c244f.js"><link rel="prefetch" href="/vuex-orm/assets/js/17.b914127f.js"><link rel="prefetch" href="/vuex-orm/assets/js/18.8c47405c.js"><link rel="prefetch" href="/vuex-orm/assets/js/19.a15cd2c0.js"><link rel="prefetch" href="/vuex-orm/assets/js/20.0e0bbd95.js"><link rel="prefetch" href="/vuex-orm/assets/js/21.b61d214e.js"><link rel="prefetch" href="/vuex-orm/assets/js/23.8a09fef2.js"><link rel="prefetch" href="/vuex-orm/assets/js/24.e58edf79.js"><link rel="prefetch" href="/vuex-orm/assets/js/25.72c8fe80.js"><link rel="prefetch" href="/vuex-orm/assets/js/26.fc457c20.js"><link rel="prefetch" href="/vuex-orm/assets/js/27.e28f9ecd.js"><link rel="prefetch" href="/vuex-orm/assets/js/3.4bfdbd78.js"><link rel="prefetch" href="/vuex-orm/assets/js/4.76dabc43.js"><link rel="prefetch" href="/vuex-orm/assets/js/5.ff495f38.js"><link rel="prefetch" href="/vuex-orm/assets/js/6.3dba3ff3.js"><link rel="prefetch" href="/vuex-orm/assets/js/7.99f848a9.js"><link rel="prefetch" href="/vuex-orm/assets/js/8.d104dc3d.js"><link rel="prefetch" href="/vuex-orm/assets/js/9.172f6dd2.js">
+    <link rel="stylesheet" href="/vuex-orm/assets/css/0.styles.dae4e529.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vuex-orm/" class="home-link router-link-active"><!----> <span class="site-name">Vuex ORM</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vuex-orm/guide/prologue/what-is-vuex-orm.html" class="nav-link">Guide</a></div><div class="nav-item"><a href="/vuex-orm/api/database.html" class="nav-link">API Reference</a></div><div class="nav-item"><a href="https://github.com/vuex-orm/vuex-orm/releases" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Release Notes
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/vuex-orm/vuex-orm" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vuex-orm/guide/prologue/what-is-vuex-orm.html" class="nav-link">Guide</a></div><div class="nav-item"><a href="/vuex-orm/api/database.html" class="nav-link">API Reference</a></div><div class="nav-item"><a href="https://github.com/vuex-orm/vuex-orm/releases" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Release Notes
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/vuex-orm/vuex-orm" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Prologue</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/prologue/what-is-vuex-orm.html" class="sidebar-link">What is Vuex ORM?</a></li><li><a href="/vuex-orm/guide/prologue/installation.html" class="sidebar-link">Installation</a></li><li><a href="/vuex-orm/guide/prologue/getting-started.html" class="sidebar-link">Getting Started</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Core Components</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/components/models.html" class="sidebar-link">Models</a></li><li><a href="/vuex-orm/guide/components/modules-and-store.html" class="sidebar-link">Modules and Store</a></li><li><a href="/vuex-orm/guide/components/database-and-registration.html" class="sidebar-link">Database and Registration</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Interacting With Store</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/store/inserting-and-updating-data.html" class="sidebar-link">Inserting and Updating Data</a></li><li><a href="/vuex-orm/guide/store/retrieving-data.html" class="sidebar-link">Retrieving Data</a></li><li><a href="/vuex-orm/guide/store/deleting-data.html" class="sidebar-link">Deleting Data</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Relationships</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/relationships/defining-relationships.html" class="sidebar-link">Defining Relationships</a></li><li><a href="/vuex-orm/guide/relationships/inserting-relationships.html" class="active sidebar-link">Inserting Relationships</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vuex-orm/guide/relationships/inserting-relationships.html#choosing-the-insert-method-of-the-related-records" class="sidebar-link">Choosing the Insert Method of the Related Records</a></li><li class="sidebar-sub-header"><a href="/vuex-orm/guide/relationships/inserting-relationships.html#creating-has-many-through-relationship" class="sidebar-link">Creating Has Many Through Relationship</a></li></ul></li><li><a href="/vuex-orm/guide/relationships/retrieving-relationships.html" class="sidebar-link">Retrieving Relationships</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Advanced Usage</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/advanced/interact-with-store-from-model.html" class="sidebar-link">Interact With Store From Model</a></li><li><a href="/vuex-orm/guide/advanced/accessors-and-mutators.html" class="sidebar-link">Accessors &amp; Mutators</a></li><li><a href="/vuex-orm/guide/advanced/lifecycle-hooks.html" class="sidebar-link">Lifecycle Hooks</a></li><li><a href="/vuex-orm/guide/advanced/serialization.html" class="sidebar-link">Serialization</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Digging Deeper</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/digging-deeper/plugins.html" class="sidebar-link">Plugins</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="content default"><h1 id="inserting-relationships"><a href="#inserting-relationships" aria-hidden="true" class="header-anchor">#</a> Inserting Relationships</h1> <p>When inserting data into the store through Vuex ORM action, such as <code>create</code> and <code>insert</code>, it will normalize any relationship if the data contains them.</p> <p>Let's look at an example. Here we assume you have User and Post models. User relationship of <code>hasMany</code> with Posts.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> entity <span class="token operator">=</span> <span class="token string">'users'</span>
+
+  <span class="token keyword">static</span> <span class="token function">fields</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      name<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      posts<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">hasMany</span><span class="token punctuation">(</span>Post<span class="token punctuation">,</span> <span class="token string">'user_id'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Post</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> entity <span class="token operator">=</span> <span class="token string">'posts'</span>
+
+  <span class="token keyword">static</span> <span class="token function">fields</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      user_id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      title<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>And let's say you have the following data that is user object, but has related posts within. This is probably what you would get as a response from the API backend.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  name<span class="token punctuation">:</span> <span class="token string">'John Doe'</span><span class="token punctuation">,</span>
+  posts<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> user_id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'...'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> user_id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'...'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> user_id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'...'</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>If you save this data to the store by <code>create</code> or <code>insert</code> actions, it will be normalized and saved under its corresponding module.</p> <div class="language-js extra-class"><pre class="language-js"><code>User<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> data <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Inside store.</span>
+<span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  entities<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    users<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'1'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> name<span class="token punctuation">:</span> <span class="token string">'John Doe'</span> <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    posts<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'1'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> user_id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'...'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'2'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> user_id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'...'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token string">'3'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">3</span><span class="token punctuation">,</span> user_id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> title<span class="token punctuation">:</span> <span class="token string">'...'</span> <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="choosing-the-insert-method-of-the-related-records"><a href="#choosing-the-insert-method-of-the-related-records" aria-hidden="true" class="header-anchor">#</a> Choosing the Insert Method of the Related Records</h2> <p>When you insert data with related records included, all of the related records will be inserted using the base method that was called. For example, if you call the <code>create</code> method, all of the related records get &quot;created&quot; into the store.</p> <div class="language-js extra-class"><pre class="language-js"><code>User<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> data <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>Sometimes you might want the option to choose how Vuex ORM inserts data into the store depending on the relationship. For example, you might want to &quot;create&quot; users but &quot;insert&quot; posts. You may do so by passing additional options to the method. The available options are:</p> <ul><li><code>create</code></li> <li><code>insert</code></li> <li><code>update</code></li> <li><code>insertOrUpdate</code></li></ul> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// `create` users but `insert` posts.</span>
+User<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  insert<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'posts'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// `insert` users but `create` posts and `comments`.</span>
+User<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  data<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  create<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token string">'posts'</span><span class="token punctuation">,</span> <span class="token string">'comments'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>These options can be specified at all of the persist type methods which are <code>create</code>, <code>insert</code>, <code>update</code> and <code>insertOrUpdate</code>.</p> <p>Note that the value passed to those <code>create</code> or <code>insert</code> options should be the name of the entity, <em>not</em> the name of the field that defines the relationship in the model.</p> <h2 id="creating-has-many-through-relationship"><a href="#creating-has-many-through-relationship" aria-hidden="true" class="header-anchor">#</a> Creating Has Many Through Relationship</h2> <p>When creating data that contains <code>hasManyThrough</code> relationship without an intermediate relation, the intermediate record will not be generated.</p> <p>Let's say you have the following model definitions.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">class</span> <span class="token class-name">Country</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> entity <span class="token operator">=</span> <span class="token string">'countries'</span>
+
+  <span class="token keyword">static</span> <span class="token function">fields</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      users<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">hasMany</span><span class="token punctuation">(</span>User<span class="token punctuation">,</span> <span class="token string">'country_id'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      posts<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">hasManyThrough</span><span class="token punctuation">(</span>Post<span class="token punctuation">,</span> User<span class="token punctuation">,</span> <span class="token string">'country_id'</span><span class="token punctuation">,</span> <span class="token string">'user_id'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">User</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> entity <span class="token operator">=</span> <span class="token string">'users'</span>
+
+  <span class="token keyword">static</span> <span class="token function">fields</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      country_id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      posts<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">hasMany</span><span class="token punctuation">(</span>Post<span class="token punctuation">,</span> <span class="token string">'user_id'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Post</span> <span class="token keyword">extends</span> <span class="token class-name">Model</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> entity <span class="token operator">=</span> <span class="token string">'posts'</span>
+
+  <span class="token keyword">static</span> <span class="token function">fields</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      user_id<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attr</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>And then you try to save the following data.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  posts<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+Country<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> data <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div><p>Vuex ORM will normalize the data and save them to the store as below.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> state <span class="token operator">=</span> <span class="token punctuation">{</span>
+  countries<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'1'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  users<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  posts<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+      <span class="token string">'1'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span> user_id<span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token string">'2'</span><span class="token punctuation">:</span> <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span> user_id<span class="token punctuation">:</span> <span class="token keyword">null</span> <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>See there is no users record, and <code>user_id</code> at <code>posts</code> becomes empty. This happens because Vuex ORM wouldn't have any idea how would the posts relate to the intermediate model – User –. Hence if you create data like this, you wouldn't be able to retrieve them by getters anymore.</p> <p>In such cases, it is recommended to create data with the intermediate table.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token punctuation">{</span>
+  id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  users<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      posts<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      id<span class="token punctuation">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+      posts<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span> id<span class="token punctuation">:</span> <span class="token number">2</span> <span class="token punctuation">}</span>
+      <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+Country<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> data <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/vuex-orm/guide/relationships/defining-relationships.html" class="prev">
+          Defining Relationships
+        </a></span> <span class="next"><a href="/vuex-orm/guide/relationships/retrieving-relationships.html">
+          Retrieving Relationships
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/vuex-orm/assets/js/app.6db28ecc.js" defer></script><script src="/vuex-orm/assets/js/2.b42d885f.js" defer></script><script src="/vuex-orm/assets/js/22.997f30bc.js" defer></script>
+  </body>
+</html>

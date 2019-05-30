@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Retrieving Relationships | Vuex ORM</title>
+    <meta name="description" content="The Vuex plugin to enable Object-Relational Mapping access to the Vuex Store.">
+    
+    
+    <link rel="preload" href="/vuex-orm/assets/css/0.styles.dae4e529.css" as="style"><link rel="preload" href="/vuex-orm/assets/js/app.6db28ecc.js" as="script"><link rel="preload" href="/vuex-orm/assets/js/2.b42d885f.js" as="script"><link rel="preload" href="/vuex-orm/assets/js/23.8a09fef2.js" as="script"><link rel="prefetch" href="/vuex-orm/assets/js/10.427b5722.js"><link rel="prefetch" href="/vuex-orm/assets/js/11.cb9a85ae.js"><link rel="prefetch" href="/vuex-orm/assets/js/12.ee64ca3b.js"><link rel="prefetch" href="/vuex-orm/assets/js/13.aea5ff80.js"><link rel="prefetch" href="/vuex-orm/assets/js/14.b84c66ed.js"><link rel="prefetch" href="/vuex-orm/assets/js/15.726db050.js"><link rel="prefetch" href="/vuex-orm/assets/js/16.453c244f.js"><link rel="prefetch" href="/vuex-orm/assets/js/17.b914127f.js"><link rel="prefetch" href="/vuex-orm/assets/js/18.8c47405c.js"><link rel="prefetch" href="/vuex-orm/assets/js/19.a15cd2c0.js"><link rel="prefetch" href="/vuex-orm/assets/js/20.0e0bbd95.js"><link rel="prefetch" href="/vuex-orm/assets/js/21.b61d214e.js"><link rel="prefetch" href="/vuex-orm/assets/js/22.997f30bc.js"><link rel="prefetch" href="/vuex-orm/assets/js/24.e58edf79.js"><link rel="prefetch" href="/vuex-orm/assets/js/25.72c8fe80.js"><link rel="prefetch" href="/vuex-orm/assets/js/26.fc457c20.js"><link rel="prefetch" href="/vuex-orm/assets/js/27.e28f9ecd.js"><link rel="prefetch" href="/vuex-orm/assets/js/3.4bfdbd78.js"><link rel="prefetch" href="/vuex-orm/assets/js/4.76dabc43.js"><link rel="prefetch" href="/vuex-orm/assets/js/5.ff495f38.js"><link rel="prefetch" href="/vuex-orm/assets/js/6.3dba3ff3.js"><link rel="prefetch" href="/vuex-orm/assets/js/7.99f848a9.js"><link rel="prefetch" href="/vuex-orm/assets/js/8.d104dc3d.js"><link rel="prefetch" href="/vuex-orm/assets/js/9.172f6dd2.js">
+    <link rel="stylesheet" href="/vuex-orm/assets/css/0.styles.dae4e529.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/vuex-orm/" class="home-link router-link-active"><!----> <span class="site-name">Vuex ORM</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/vuex-orm/guide/prologue/what-is-vuex-orm.html" class="nav-link">Guide</a></div><div class="nav-item"><a href="/vuex-orm/api/database.html" class="nav-link">API Reference</a></div><div class="nav-item"><a href="https://github.com/vuex-orm/vuex-orm/releases" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Release Notes
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/vuex-orm/vuex-orm" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/vuex-orm/guide/prologue/what-is-vuex-orm.html" class="nav-link">Guide</a></div><div class="nav-item"><a href="/vuex-orm/api/database.html" class="nav-link">API Reference</a></div><div class="nav-item"><a href="https://github.com/vuex-orm/vuex-orm/releases" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Release Notes
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <a href="https://github.com/vuex-orm/vuex-orm" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Prologue</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/prologue/what-is-vuex-orm.html" class="sidebar-link">What is Vuex ORM?</a></li><li><a href="/vuex-orm/guide/prologue/installation.html" class="sidebar-link">Installation</a></li><li><a href="/vuex-orm/guide/prologue/getting-started.html" class="sidebar-link">Getting Started</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Core Components</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/components/models.html" class="sidebar-link">Models</a></li><li><a href="/vuex-orm/guide/components/modules-and-store.html" class="sidebar-link">Modules and Store</a></li><li><a href="/vuex-orm/guide/components/database-and-registration.html" class="sidebar-link">Database and Registration</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Interacting With Store</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/store/inserting-and-updating-data.html" class="sidebar-link">Inserting and Updating Data</a></li><li><a href="/vuex-orm/guide/store/retrieving-data.html" class="sidebar-link">Retrieving Data</a></li><li><a href="/vuex-orm/guide/store/deleting-data.html" class="sidebar-link">Deleting Data</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>Relationships</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/relationships/defining-relationships.html" class="sidebar-link">Defining Relationships</a></li><li><a href="/vuex-orm/guide/relationships/inserting-relationships.html" class="sidebar-link">Inserting Relationships</a></li><li><a href="/vuex-orm/guide/relationships/retrieving-relationships.html" class="active sidebar-link">Retrieving Relationships</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vuex-orm/guide/relationships/retrieving-relationships.html#load-nested-relation" class="sidebar-link">Load Nested Relation</a></li><li class="sidebar-sub-header"><a href="/vuex-orm/guide/relationships/retrieving-relationships.html#load-all-relations" class="sidebar-link">Load All Relations</a></li><li class="sidebar-sub-header"><a href="/vuex-orm/guide/relationships/retrieving-relationships.html#relation-constraints" class="sidebar-link">Relation Constraints</a></li><li class="sidebar-sub-header"><a href="/vuex-orm/guide/relationships/retrieving-relationships.html#querying-relationship-existence" class="sidebar-link">Querying Relationship Existence</a></li><li class="sidebar-sub-header"><a href="/vuex-orm/guide/relationships/retrieving-relationships.html#querying-relationship-absence" class="sidebar-link">Querying Relationship Absence</a></li></ul></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Advanced Usage</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/advanced/interact-with-store-from-model.html" class="sidebar-link">Interact With Store From Model</a></li><li><a href="/vuex-orm/guide/advanced/accessors-and-mutators.html" class="sidebar-link">Accessors &amp; Mutators</a></li><li><a href="/vuex-orm/guide/advanced/lifecycle-hooks.html" class="sidebar-link">Lifecycle Hooks</a></li><li><a href="/vuex-orm/guide/advanced/serialization.html" class="sidebar-link">Serialization</a></li></ul></section></li><li><section class="sidebar-group depth-0"><p class="sidebar-heading"><span>Digging Deeper</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vuex-orm/guide/digging-deeper/plugins.html" class="sidebar-link">Plugins</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="content default"><h1 id="retrieving-relationships"><a href="#retrieving-relationships" aria-hidden="true" class="header-anchor">#</a> Retrieving Relationships</h1> <p>You can use the <code>with</code> method to load related model when querying data. The argument to the <code>with</code> method should be the name of the field that defines the relationship, <em>not</em> the entity name of the related model.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'profile'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'posts'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment">/*
+  User {
+    id: 1,
+    name: 'john',
+
+    profile: Profile {
+      id: 1,
+      user_id: 1,
+      age: 24
+    },
+
+    posts: [
+      Post: { id: 1, user_id: 1, body: '...' },
+      Post: { id: 2, user_id: 1, body: '...' }
+    ]
+  }
+*/</span>
+</code></pre></div><h2 id="load-nested-relation"><a href="#load-nested-relation" aria-hidden="true" class="header-anchor">#</a> Load Nested Relation</h2> <p>You can load nested relations with dot syntax.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'posts.comments'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment">/*
+  User {
+    id: 1,
+    name: 'john',
+
+    posts: [
+      Post: {
+        id: 1,
+        user_id: 1,
+        body: '...',
+
+        comments: [
+          Comment: { id: 1, post_id: 1, body: '...' },
+          Comment: { id: 2, post_id: 1, body: '...' }
+        ]
+      },
+
+      Post: {
+        id: 2,
+        user_id: 1,
+        body: '...',
+
+        comments: [
+          Comment: { id: 3, post_id: 2, body: '...' },
+          Comment: { id: 4, post_id: 2, body: '...' }
+        ]
+      },
+    ]
+  }
+*/</span>
+</code></pre></div><p>You can load multiple sub relations by separating them with <code>|</code> (symbolizing the <code>or</code> syntax):</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// Fetching all comments &amp; reviews from user.posts</span>
+  <span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'posts.comments|reviews'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre></div><p>Or passing an array of relations (in that case, the full path is needed):</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">// Fetching all comments &amp; reviews from user.posts + user.profile</span>
+  <span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'posts.comments'</span><span class="token punctuation">,</span> <span class="token string">'posts.reviews'</span><span class="token punctuation">,</span> <span class="token string">'profile'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="load-all-relations"><a href="#load-all-relations" aria-hidden="true" class="header-anchor">#</a> Load All Relations</h2> <p>You can load all relations using the <code>withAll</code> method.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">withAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment">/*
+  User {
+    id: 1,
+    name: 'john',
+
+    profile: Profile {
+      id: 1,
+      user_id: 1,
+      age: 24
+    },
+
+    posts: [
+      Post: {
+        id: 1,
+        user_id: 1,
+        body: '...',
+
+        comments: null
+      },
+
+      Post: {
+        id: 2,
+        user_id: 1,
+        body: '...',
+
+        comments: null
+      },
+    ]
+  }
+*/</span>
+</code></pre></div><p>To fetch all sub relations of a relation using the dot syntax, use <code>*</code>;</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'posts.*'</span><span class="token punctuation">)</span> <span class="token comment">// Fetches all relations of all posts.</span>
+  <span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</code></pre></div><p>To fetch all sub relations to a certain level you can use the <code>withAllRecursive</code> method. You can specify a depth to which relations should be loaded. The depth defaults to 3, so if you call <code>withAllRecursive</code> with no arguments, it will fetch all sub relations of sub relations of sub relations of the queried entity.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">withAllRecursive</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">find</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment">/*
+  User {
+    id: 1,
+    name: 'john',
+
+    profile: Profile {
+      id: 1,
+      user_id: 1,
+      age: 24
+    },
+
+    posts: [
+      Post: {
+        id: 1,
+        user_id: 1,
+        body: '...',
+
+        comments: [
+          Comment: { id: 1, post_id: 1, body: '...' },
+          Comment: { id: 2, post_id: 1, body: '...' }
+        ]
+      },
+
+      Post: {
+        id: 2,
+        user_id: 1,
+        body: '...',
+
+        comments: [
+          Comment: { id: 3, post_id: 2, body: '...' },
+          Comment: { id: 4, post_id: 2, body: '...' }
+        ]
+      },
+    ]
+  }
+*/</span>
+</code></pre></div><h2 id="relation-constraints"><a href="#relation-constraints" aria-hidden="true" class="header-anchor">#</a> Relation Constraints</h2> <p>To filter the result of relation loaded by the <code>with</code> method, you can pass a closure to the second argument to define additional constraints to the query.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Get all users with posts that have `published` field value of `true`.</span>
+<span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'posts'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">query</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  query<span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">'published'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">/*
+  [
+    User {
+      id: 1,
+      name: 'john',
+      posts: [
+        Post: { id: 1, user_id: 1, body: '...', published: true },
+        Post: { id: 2, user_id: 1, body: '...', published: true }
+      ]
+    },
+
+    ...
+  ]
+*/</span>
+</code></pre></div><p>When you add constraints to the &quot;nested&quot; relation, the constraints will be applied to the deepest relationship.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'posts.comments'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">query</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// This constraint will be applied to the `comments`, not `posts`.</span>
+  query<span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">'type'</span><span class="token punctuation">,</span> <span class="token string">'review'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>If you need to add constraints to each relation, you could always nest constraints. This is the most flexible way of defining constraints to the relationships.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> user <span class="token operator">=</span> User<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'posts.comments'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">query</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  query<span class="token punctuation">.</span><span class="token function">with</span><span class="token punctuation">(</span><span class="token string">'comments'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">query</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    query<span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">'type'</span><span class="token punctuation">,</span> <span class="token string">'review'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">'published'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="querying-relationship-existence"><a href="#querying-relationship-existence" aria-hidden="true" class="header-anchor">#</a> Querying Relationship Existence</h2> <p>When querying the record, you may wish to limit your results based on the existence of a relationship. For example, imagine you want to retrieve all blog posts that have at least one comment. To do so, you may pass the name of the relationship to the <code>has</code> methods.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Retrieve all posts that have at least one comment.</span>
+Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">'comments'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>You may also specify count as well.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Retrieve all posts that have at least 2 comments.</span>
+Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">'comments'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>Also, you may add an operator to customize your query even more. The supported operators are <code>=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code> and <code>&lt;=</code>.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Retrieve all posts that have more than 2 comments.</span>
+Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">'comments'</span><span class="token punctuation">,</span> <span class="token string">'&gt;'</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Retrieve all posts that have less than or exactly 2 comments.</span>
+Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">'comments'</span><span class="token punctuation">,</span> <span class="token string">'&lt;='</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><p>If you need even more power, you may use the <code>whereHas</code> method to put &quot;where&quot; conditions on your <code>has</code> queries. This method allows you to add customized constraints to a relationship constraint, such as checking the content of a comment.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Retrieve all posts that have comment from user_id 1.</span>
+Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">whereHas</span><span class="token punctuation">(</span><span class="token string">'comments'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">query</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  query<span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">'user_id'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="querying-relationship-absence"><a href="#querying-relationship-absence" aria-hidden="true" class="header-anchor">#</a> Querying Relationship Absence</h2> <p>To retrieve records depending on the absence of the relationship, use the <code>hasNot</code> and <code>whereHasNot</code> methods. These methods will work the same as <code>has</code> and <code>whereHas</code> but with the opposite result.</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">// Retrieve all posts that doesn't have comments.</span>
+Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasNot</span><span class="token punctuation">(</span><span class="token string">'comments'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Retrieve all posts that doesn't have comment with user_id of 1.</span>
+Post<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">whereHasNot</span><span class="token punctuation">(</span><span class="token string">'comments'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">query</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  query<span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">'user_id'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/vuex-orm/guide/relationships/inserting-relationships.html" class="prev">
+          Inserting Relationships
+        </a></span> <span class="next"><a href="/vuex-orm/guide/advanced/interact-with-store-from-model.html">
+          Interact With Store From Model
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/vuex-orm/assets/js/app.6db28ecc.js" defer></script><script src="/vuex-orm/assets/js/2.b42d885f.js" defer></script><script src="/vuex-orm/assets/js/23.8a09fef2.js" defer></script>
+  </body>
+</html>
